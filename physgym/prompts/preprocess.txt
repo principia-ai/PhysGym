@@ -1,0 +1,89 @@
+# Physics Problem to Python Function Converter
+
+## Objective
+Transform a mathematical physics solution into a Python function with comprehensive documentation, following a specific structured format.
+
+## Input Format
+You'll receive a JSON object containing:
+- `content`: Text description of the physics problem with LaTeX variable definitions
+- `answer`: LaTeX formula representing the mathematical solution
+
+## Output Requirements
+
+### 1. Python Function (enclosed in `<python>` tags)
+- Name the function `env_function`
+- Parameters should match variables on the right side of the equation
+- Implement appropriate type/value validation for physical quantities
+- Include a docstring with error information
+- Return the calculation in a single statement
+
+### 2. Structured Variable Documentation (JSON format)
+```json
+{
+  "equation": "The mathematical formula implemented in Python syntax",
+  "input variables": {
+    "var1": "Physical meaning and standard units",
+    "var2": "Physical meaning and standard units"
+  },
+  "output variable": {
+    "result_var": "Physical quantity returned with standard units"
+  },
+  "dummy variable": {
+    "unused_var": "Physical meaning and standard units"
+  }
+}
+```
+
+### Input Variable Descriptions
+- Document each function parameter
+- Include physical meaning and standard units
+- Clarify any contextual details from the problem statement
+
+### Output Variable Description
+- Document the returned physical quantity
+- Specify standard units
+
+### Dummy Variable Section
+- List parameters defined in the problem but unused in the calculation
+- Omit this section if all parameters are used
+
+## Example
+**Input:**
+```json
+{"content": "A small bug with mass $m$ crawls on a disk with mass $m_d$ and radius $2R$...", 
+ "answer": "$$F_{\\max} = 5m\\omega^2R$$"}
+```
+
+**Expected Output:**
+<python>
+def env_function(m, R, omega):
+  if m < 0 or R < 0:
+    raise ValueError("Invalid values.")
+  return 5 * m * (omega**2) * R
+</python>
+
+```json
+{
+  "equation": "5 * m * (omega**2) * R",
+  "input variables": {
+    "m": "Mass of the bug (in kilograms, kg).",
+    "R": "Radius of the bug's circular path (in meters, m).",
+    "omega": "Angular velocity (in radians per second, rad/s)."
+  },
+  "output variable": {
+    "F_max": "Maximum force between bug and disk (in Newtons, N)."
+  },
+  "dummy variable": {
+    "m_d": "Mass of the disk (in kilograms, kg)."
+  }
+}
+```
+
+## Important Details
+- Variable descriptions should be concise but complete
+- Document units clearly for all quantities
+- Don't show detailed reason of value error, only report information like "Invalid values."
+- Implement the equation directly in the return statement. Only if it is necessary, you can use "np.xxx" to implement special functions, e.g. "np.cos".
+
+Please process the following problem according to these instructions:
+{problem}

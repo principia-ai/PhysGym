@@ -1,0 +1,104 @@
+# Core Task
+Based on the provided problem description, controllable physical quantities, observable physical quantities, and historical experimental records, your primary goal is to:
+1. Deduce the mathematical expression (formula) that describes how the observable quantity changes with the controllable physical quantities
+2. Propose the next set of experimental parameters to test
+3. Determine if it's appropriate to formally test your current hypothesis
+
+# Inputs
+The input will be a JSON dictionary with the following five parts:
+
+1. **`problem_description`**: (String)
+   * A brief description of the physical phenomenon or system under study
+   * Example: "Investigating the relationship between the extension of a spring and the applied force."
+
+2. **`controllable_variables`**: (Dictionary)
+   * Physical quantities that can be actively changed in an experiment
+   * The dictionary contains:
+     * Keys: The `name` of the physical quantity (e.g., "F", "k")
+     * Values: Detailed description of the physical quantity
+   * Example:
+     ```json
+       {"F": "The applied force on the spring in Newtons (N)", "k": "The spring constant in Newtons per meter (N/m)"}
+     ```
+
+3. **`observable_variable`**: (Dictionary)
+   * The physical quantity measured in the experiment
+   * This quantity changes in response to changes in controllable variables
+   * Example:
+     ```json
+     {"x": "The extension of the spring in meters (m)"}
+     ```
+
+4. **`historical_experiments`**: (List of Dictionaries)
+   * Data from previously conducted experiments
+   * Each dictionary represents a single experimental record
+   * Contains all controllable variables and their set values, plus observed results
+   * Example:
+     ```json
+     [
+       {"F": 0.5, "k": 10, "x": 0.05},
+       {"F": 1.0, "k": 10, "x": 0.10}
+     ]
+     ```
+   * May be an empty list `[]` for the first run
+
+5. **`quota`**: (Dictionary)
+   * Defines the remaining budget for experimentation and hypothesis testing.
+   * experiments_quota: (Integer) The maximum total number of remaining experimental runs you can try.
+   * test_quota: (Integer) The remaining number of times you can set the `test_hypothesis_flag` to true.
+   * Example:
+     ```json
+     {"experiments_quota": 10, "test_quota": 2}
+     ```
+
+# Outputs
+You must output a JSON dictionary with the following three parts:
+
+1. **`next_experiments`**: (List of Dictionaries)
+   * Your designed input variable combinations for the next experiment(s)
+   * Each dictionary represents a set of experimental parameters
+   * Keys are the `name` of controllable physical quantities
+   * Values are your proposed settings within allowed ranges. Use floats or integers.
+   * Strategy:
+     * For empty historical data: Provide exploratory initial experimental points
+     * For existing data: Select the most informative points to test your hypothesis
+     * Ensure experimental diversity and coverage
+
+2. **`test_hypothesis_flag`**: (Boolean)
+   * `true`: Your current hypothesis is mature and next experiments aim to validate it
+   * `false`: You're in exploratory phase with low confidence, seeking more data
+
+3. **`current_hypothesis_formula`**: (String)
+   * Your conjectured mathematical expression relating observable quantity to controllable quantities (in Python syntax with basic operators)
+   * Use the exact variable names defined in the input
+   * IMPORTANT: Use "**" operator for powers/exponents. Only if it is necessary, you can use "np.xxx" to implement special functions, e.g. "np.cos".
+   * Examples: "F / k", "a * (F ** 2) + b * L + c"
+   * Return `None` or `""` if data is too scarce to form a meaningful hypothesis
+
+# Example (First interaction without historical data)
+
+**Input:**
+```json
+{
+  "problem_description": "Investigating the relationship between the extension x of an ideal spring (within its elastic limit) and the applied force F. The spring constant is k.",
+  "controllable_variables": {"F": "The applied force on the ideal spring in Newtons (N).","k": "The spring constant in Newtons per meter (N/m)."},
+  "observable_variable": {"x": "The extension of the spring in meters (m)."},
+  "historical_experiments": [],
+  "quota": {"experiments_quota": 10, "test_quota": 2}
+}
+```
+
+**Expected Output:**
+```json
+{
+  "next_experiments": [
+    {"F": 0.5, "k": 10},
+    {"F": 1.0, "k": 10},
+    {"F": 2.0, "k": 10},
+    {"F": 1.0, "k": 20},
+    {"F": 1.0, "k": 5}
+  ],
+  "test_hypothesis_flag": false,
+  "current_hypothesis_formula": "F / k"
+}
+```

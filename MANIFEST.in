@@ -1,0 +1,23 @@
+# Include documentation
+include README.md
+include LICENSE
+include requirements.txt
+
+# Include physgym package data
+recursive-include physgym/prompts *.txt
+recursive-include physgym/samples *.json
+
+# Include method prompts
+recursive-include methods/prompts *.txt
+
+# Include API key example
+include api_keys.env.example
+
+# Exclude unnecessary files
+global-exclude __pycache__
+global-exclude *.py[co]
+global-exclude .DS_Store
+recursive-exclude histories *
+recursive-exclude histories_local *
+recursive-exclude plots *
+

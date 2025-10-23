@@ -1,0 +1,37 @@
+**Task:** Determine whether two Python functions are mathematically equivalent by analyzing their return statements.
+
+**Input:** 
+You will receive two Python functions that are meant to calculate the same physical quantity. Your task is to determine whether they are mathematically equivalent.
+
+Function 1:
+```python
+{function1}
+```
+
+Function 2:
+```python
+{function2}
+```
+
+**Instructions:**
+1. Focus primarily on the mathematical equations in the return statements of both functions.
+2. Ignore differences in:
+   - Parameter order
+   - Comments
+   - Error handling
+   - Numerical precision difference like "np.pi" and "3.1415926"
+   - Implementation details that don't affect the result
+3. Use mathematical reasoning to determine if the functions always produce the same output for all valid inputs.
+
+**Output Format:**
+Return your answer in the following JSON format:
+
+```json
+{"are_equivalent": true/false, "confidence": 0.0-1.0, "explanation": "Brief explanation of your reasoning...", "differences": "Describe any mathematical differences if functions are not equivalent..."}
+```
+
+Where:
+- "are_equivalent": A boolean indicating whether the functions are mathematically equivalent
+- "confidence": A number between 0 and 1 indicating how confident you are in your assessment
+- "explanation": A brief explanation of your analysis, focusing on the mathematical equivalence
+- "differences": If functions are not equivalent, describe the mathematical differences

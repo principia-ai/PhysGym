@@ -1,0 +1,92 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "physgym"
+version = "0.1.0"
+description = "A framework for simulating physics experiments, testing hypotheses, and evaluating scientific reasoning"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+authors = [
+    {name = "PhysGym Contributors"}
+]
+keywords = ["physics", "simulation", "experiment", "scientific-reasoning", "llm", "benchmark"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Scientific/Engineering :: Physics",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+dependencies = [
+    "numpy",
+    "pandas",
+    "python-dotenv",
+    "typing-extensions",
+    "scikit-learn",
+    "sympy",
+    "openai",
+    "anthropic",
+    "matplotlib-venn",
+    "matplotlib",
+    "gymnasium",
+    "requests",
+]
+
+[project.optional-dependencies]
+local-llm = [
+    "torch",
+    "ollama",
+    "vllm",
+]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov",
+    "black",
+    "ruff",
+]
+all = [
+    "torch",
+    "ollama",
+    "vllm",
+    "pytest>=7.0",
+    "pytest-cov",
+    "black",
+    "ruff",
+]
+
+[project.urls]
+Homepage = "https://github.com/principia-ai/PhysGym"
+Repository = "https://github.com/principia-ai/PhysGym"
+Documentation = "https://github.com/principia-ai/PhysGym#readme"
+
+[tool.setuptools]
+packages = ["physgym", "physgym.utils", "methods"]
+
+[tool.setuptools.package-data]
+physgym = [
+    "py.typed",
+    "samples/*.json",
+    "prompts/*.txt",
+]
+methods = [
+    "prompts/*.txt",
+]
+
+[tool.black]
+line-length = 100
+target-version = ['py38', 'py39', 'py310', 'py311']
+
+[tool.ruff]
+line-length = 100
+target-version = "py38"
+

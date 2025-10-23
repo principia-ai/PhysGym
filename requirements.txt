@@ -1,0 +1,16 @@
+numpy
+pandas
+python-dotenv
+typing-extensions
+scikit-learn
+sympy
+openai
+anthropic
+matplotlib-venn
+matplotlib
+gymnasium
+requests
+# OPTIONAL: for local LLM support
+torch
+ollama
+vllm
