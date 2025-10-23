@@ -6,7 +6,7 @@
 <h3 align="center">Simulating Interactive Physics Discovery with Controlled Priors</h3>
 
 <p align="center">
-  <a href="https://arxiv.org/abs/2503.08275"><img src="https://img.shields.io/badge/arXiv-2503.08275-b31b1b.svg" alt="arXiv"></a>
+  <a href="https://arxiv.org/abs/2507.15550"><img src="https://img.shields.io/badge/arXiv-2507.15550-b31b1b.svg" alt="arXiv"></a>
   <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a>
 </p>
 
@@ -19,7 +19,7 @@ A novel benchmark suite and simulation platform for rigorously assessing LLM-bas
 ## 📢 News
 
 - [Sep 2025] 🎉 PhysGym has been accepted to **NeurIPS 2025 Datasets and Benchmarks Track**! See you in San Diego.
-- [Jul 2025] Paper released on [arXiv](https://arxiv.org/abs/2503.08275).
+- [Jul 2025] Paper released on [arXiv](https://arxiv.org/abs/2507.15550).
 
 ## Overview
 
@@ -358,10 +358,10 @@ PhysGym opens several promising avenues:
 If you use PhysGym in your research, please cite:
 
 ```bibtex
-@inproceedings{chen2025physgym,
+@article{chen2025physgym,
   title={PhysGym: Benchmarking LLMs in Interactive Physics Discovery with Controlled Priors},
-  author={Chen, Yimeng and Pi{\k{e}}kos, Piotr and Ostaszewski, Mateusz and Laakom, Firas and Schmidhuber, J{\"u}rgen},
-  booktitle={Advances in Neural Information Processing Systems},
+  author={Chen, Yimeng and Pi\k{e}kos, Piotr and Ostaszewski, Mateusz and Laakom, Firas and Schmidhuber, J{\"u}rgen},
+  journal={arXiv preprint arXiv:2507.15550},
   year={2025}
 }
 ```
@@ -378,7 +378,7 @@ We welcome contributions! Areas of interest:
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License.
 
 
 ---
